@@ -9,6 +9,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <section id="blogs">
+        <h2>Featured Blogs</h2>
+        <div id="blog-list" class="blog-grid"></div>
+      
+        <!-- Blog Modal -->
+        <div id="blog-modal" class="modal">
+          <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-content"></p>
+          </div>
+        </div>
+      </section>
+      
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">Xthlete</a>

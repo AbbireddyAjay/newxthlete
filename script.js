@@ -1,728 +1,311 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #000000;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-}
-
-/* Navigation */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all 0.3s ease;
-}
-
-.navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.98);
-    box-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
-
-.logo {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #ffffff;
-    text-decoration: none;
-    letter-spacing: -1px;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-item a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.nav-item a:hover {
-    color: #00d4ff;
-}
-
-.nav-item a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00d4ff, #0099cc);
-    transition: width 0.3s ease;
-}
-
-.nav-item a:hover::after {
-    width: 100%;
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #ffffff;
-    margin: 3px 0;
-    transition: 0.3s;
-}
-
-/* Hero Section */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-}
-
-.hero-content {
-    max-width: 800px;
-    padding: 0 2rem;
-    animation: fadeInUp 1s ease-out;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffffff, #00d4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #00d4ff, #0099cc);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    transform: translateY(0);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-}
-
-/* Section Styles */
-.section {
-    padding: 5rem 0;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-.section-title {
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, #00d4ff, #0099cc);
-    border-radius: 2px;
-}
-
-/* Blog Section */
-.blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.blog-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.blog-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.blog-content {
-    padding: 2rem;
-}
-
-.blog-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
-}
-
-.blog-card:hover .blog-image {
-    transform: scale(1.05);
-}
-
-.blog-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #00d4ff;
-}
-
-.blog-card p {
-    opacity: 0.8;
-    line-height: 1.6;
-}
-
-.blog-date {
-    color: #00d4ff;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    opacity: 0.7;
-}
-
-/* Team Section */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.team-member {
-    text-align: center;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.team-photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, #00d4ff, #0099cc);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #000;
-    font-weight: 700;
-    overflow: hidden;
-    position: relative;
-}
-
-.team-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.team-photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #000;
-    font-weight: 700;
-}
-
-.team-member h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.team-member p {
-    color: #00d4ff;
-    opacity: 0.8;
-}
-
-/* Achievements Section */
-.achievements {
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 20px;
-    padding: 3rem 2rem;
-    margin: 2rem 0;
-}
-
-.achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.achievement-item {
-    text-align: center;
-    padding: 2rem 1rem;
-}
-
-.achievement-icon {
-    font-size: 3rem;
-    color: #00d4ff;
-    margin-bottom: 1rem;
-}
-
-.achievement-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.5rem;
-}
-
-.achievement-text {
-    font-size: 1.1rem;
-    opacity: 0.8;
-}
-
-/* Footer */
-.footer {
-    background: #111111;
-    padding: 3rem 0 1rem;
-    margin-top: 5rem;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.footer-section h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #00d4ff;
-}
-
-.footer-section p, .footer-section a {
-    color: #ffffff;
-    opacity: 0.8;
-    text-decoration: none;
-    line-height: 1.8;
-}
-
-.footer-section a:hover {
-    color: #00d4ff;
-    opacity: 1;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 212, 255, 0.1);
-    border-radius: 50%;
-    color: #00d4ff;
-    transition: all 0.3s ease;
-}
-
-.social-icons a:hover {
-    background: #00d4ff;
-    color: #000000;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 2rem;
-    opacity: 0.6;
-}
-
-/* Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background-color: #111111;
-    margin: 5% auto;
-    padding: 0;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 900px;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.modal-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
-}
-
-.modal-body {
-    padding: 3rem;
-}
-
-.close {
-    position: absolute;
-    right: 2rem;
-    top: 2rem;
-    color: #ffffff;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.7);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.close:hover {
-    color: #00d4ff;
-}
-
-.modal h2 {
-    color: #00d4ff;
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    line-height: 1.2;
-}
-
-.modal-date {
-    color: #00d4ff;
-    opacity: 0.7;
-    margin-bottom: 2rem;
-    font-size: 1rem;
-}
-
-.modal-content-text {
-    line-height: 1.8;
-    font-size: 1.1rem;
-}
-
-.modal-content-text p {
-    margin-bottom: 1.5rem;
-}
-
-.modal-content-text p:last-child {
-    margin-bottom: 0;
-}
-
-.modal-bottom-image {
-    width: 100%;
-    height: auto;
-    margin-top: 2rem;
-    border-radius: 10px;
-}
-
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+// Blog data
+const blogs = [
+    {
+        title: "The Rise of a Sprinter",
+        excerpt: "Follow the incredible journey of Maya Chen as she breaks barriers and sets new records in the 100m sprint.",
+        date: "January 28, 2025",
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+        content: `
+            <p>Maya Chen's story is one of determination, discipline, and unwavering focus. Starting her athletic journey at just 12 years old, she faced numerous challenges that would have deterred many aspiring athletes.</p>
+            
+            <p>Born in a small town with limited resources, Maya's talent was first noticed during a school sports day. Her natural speed caught the attention of a local coach who saw potential that needed nurturing. Despite financial constraints, her family made sacrifices to support her training.</p>
+            
+            <p>The early years were tough. Maya would wake up at 5 AM every day to train before school, then return for evening sessions. Her dedication paid off when she won her first regional championship at 16, clocking an impressive 11.8 seconds in the 100m sprint.</p>
+            
+            <p>College brought new opportunities and challenges. Training with elite athletes pushed Maya to her limits. She refined her technique, improved her mental game, and learned the importance of recovery and nutrition. Her college coach introduced scientific training methods that transformed her performance.</p>
+            
+            <p>The breakthrough came during the national championships. Maya not only won the 100m but also set a new personal best of 10.95 seconds, qualifying her for international competitions. This moment marked the beginning of her professional career.</p>
+            
+            <p>Today, Maya continues to inspire young athletes worldwide. Her message is simple: "Talent without hard work is nothing. But hard work without giving up is everything." She now holds three national records and is preparing for the upcoming World Championships.</p>
+        `
+    },
+    {
+        title: "Mental Strength in Elite Sports",
+        excerpt: "Exploring the psychological aspects that separate good athletes from great champions in high-pressure situations.",
+        date: "January 25, 2025",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+        content: `
+            <p>The mind is often called the most powerful muscle in an athlete's body, and for good reason. While physical training gets most of the attention, mental strength is what truly separates elite performers from the rest.</p>
+            
+            <p>Dr. Sarah Mitchell, our lead sports psychologist, has worked with Olympic medalists and world champions. According to her research, 80% of athletic performance is mental. "The body achieves what the mind believes," she often tells her clients.</p>
+            
+            <p>Visualization is one of the most powerful tools in an athlete's mental arsenal. Champions spend hours mentally rehearsing their performances, imagining every detail from the starting position to crossing the finish line. This mental practice creates neural pathways that help during actual competition.</p>
+            
+            <p>Pressure is another crucial factor. Great athletes don't feel less pressure; they handle it better. They learn to reframe nerves as excitement and use adrenaline as fuel rather than letting it overwhelm them. This shift in perspective can make the difference between winning and losing.</p>
+            
+            <p>Self-talk plays a vital role in maintaining confidence during challenging moments. Positive affirmations and constructive internal dialogue help athletes maintain focus and push through barriers when their bodies want to quit.</p>
+            
+            <p>The most successful athletes also develop robust coping strategies for setbacks. They view failures as learning opportunities and maintain long-term perspective even when facing immediate disappointments. This resilience is what allows them to bounce back stronger.</p>
+            
+            <p>Mental training should be as systematic and rigorous as physical training. Regular meditation, mindfulness practices, and working with sports psychologists can dramatically improve performance and career longevity.</p>
+        `
+    },
+    {
+        title: "Nutrition for Peak Performance",
+        excerpt: "Understanding how proper nutrition can enhance athletic performance and accelerate recovery times.",
+        date: "January 22, 2025",
+        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80",
+        content: `
+            <p>Nutrition is the fuel that powers athletic excellence. Without proper nutritional strategies, even the most talented athletes will struggle to reach their full potential. Our nutrition team has developed comprehensive guidelines that have helped athletes achieve breakthrough performances.</p>
+            
+            <p>Macronutrient timing is crucial for optimal performance. Carbohydrates provide the immediate energy needed for high-intensity activities, while proteins are essential for muscle repair and growth. Fats, often overlooked, play a vital role in hormone production and long-term energy storage.</p>
+            
+            <p>Pre-workout nutrition should focus on easily digestible carbohydrates consumed 1-3 hours before training. This provides glycogen stores without causing digestive discomfort. A banana with a small amount of nut butter is a perfect example of an effective pre-workout snack.</p>
+            
+            <p>During extended training sessions or competitions lasting more than 90 minutes, athletes need to refuel with 30-60 grams of carbohydrates per hour. Sports drinks, energy gels, or fresh fruit can provide this quick energy source.</p>
+            
+            <p>Post-workout nutrition is perhaps most critical for recovery. The 30-minute window after exercise is when muscles are most receptive to nutrient uptake. A combination of protein and carbohydrates in a 3:1 or 4:1 ratio helps restore glycogen and initiate muscle repair.</p>
+            
+            <p>Hydration cannot be overlooked. Even mild dehydration can significantly impact performance. Athletes should monitor their urine color and aim to drink water consistently throughout the day, not just during training.</p>
+            
+            <p>Micronutrients like iron, B vitamins, and antioxidants play supporting roles in energy metabolism and recovery. A diverse diet rich in colorful fruits and vegetables usually provides adequate micronutrient intake, but some athletes may benefit from targeted supplementation.</p>
+        `
+    },
+    {
+        title: "Recovery: The Hidden Performance Factor",
+        excerpt: "Why rest and recovery are just as important as training for achieving athletic excellence.",
+        date: "January 20, 2025",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        content: `
+            <p>In the pursuit of athletic excellence, many athletes focus intensely on training while neglecting recovery. However, it's during rest periods that the body adapts to training stress and becomes stronger. Understanding and implementing proper recovery strategies can be the difference between plateauing and achieving new personal bests.</p>
+            
+            <p>Sleep is the cornerstone of recovery. During deep sleep, the body releases growth hormone, which is essential for muscle repair and adaptation. Elite athletes should aim for 8-9 hours of quality sleep per night, with consistent sleep and wake times to optimize their circadian rhythm.</p>
+            
+            <p>Active recovery involves low-intensity activities that promote blood flow without adding training stress. Light swimming, yoga, or easy cycling can help remove metabolic waste products and deliver nutrients to recovering tissues.</p>
+            
+            <p>Stress management is often overlooked but crucial for recovery. Chronic stress elevates cortisol levels, which can interfere with adaptation and increase injury risk. Meditation, breathing exercises, and maintaining work-life balance are essential for managing stress.</p>
+            
+            <p>Recovery technologies have advanced significantly. Cold therapy, compression garments, and massage guns can aid recovery, but they should supplement, not replace, fundamental recovery practices like sleep and nutrition.</p>
+            
+            <p>Periodization involves planned variations in training intensity and volume. Athletes can't maintain peak intensity year-round without burnout or injury. Strategic deload weeks and off-seasons are essential for long-term development.</p>
+            
+            <p>Listening to your body is perhaps the most important recovery skill. Athletes must learn to distinguish between normal training fatigue and early signs of overtraining. Heart rate variability, mood changes, and performance metrics can all provide valuable feedback about recovery status.</p>
+        `
+    },
+    {
+        title: "Technology in Modern Athletics",
+        excerpt: "How cutting-edge technology is revolutionizing training methods and performance analysis in sports.",
+        date: "January 18, 2025",
+        image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        content: `
+            <p>Technology has transformed athletics in ways that seemed impossible just a decade ago. From wearable devices that monitor every heartbeat to AI-powered video analysis that breaks down technique frame by frame, modern athletes have access to unprecedented amounts of data about their performance.</p>
+            
+            <p>Wearable technology has become ubiquitous in elite sports. GPS watches track distance, pace, and route data for endurance athletes. Heart rate monitors provide real-time feedback about training intensity. Advanced devices can even measure lactate levels non-invasively, helping athletes train in optimal zones.</p>
+            
+            <p>Video analysis software allows coaches to examine technique with microscopic detail. High-speed cameras capture movements invisible to the naked eye, while motion tracking systems provide 3D analysis of body mechanics. This technology helps identify inefficiencies and injury risk factors.</p>
+            
+            <p>Data analytics platforms aggregate information from multiple sources to provide comprehensive performance insights. Machine learning algorithms can identify patterns and predict optimal training loads, helping prevent overtraining and maximize adaptation.</p>
+            
+            <p>Virtual reality is emerging as a powerful training tool. Athletes can practice in simulated environments, replay crucial moments from competitions, or train their minds to handle high-pressure situations without physical stress.</p>
+            
+            <p>Recovery monitoring has become more sophisticated with devices that track sleep quality, stress levels, and readiness for training. This objective data helps athletes and coaches make informed decisions about when to push hard and when to focus on recovery.</p>
+            
+            <p>However, technology should enhance, not replace, fundamental coaching principles. The human element of motivation, strategy, and emotional support remains irreplaceable. The most successful programs combine cutting-edge technology with experienced coaching wisdom.</p>
+        `
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+];
+
+// Generate blog cards
+function generateBlogCards() {
+    const blogGrid = document.getElementById('blog-grid');
+    blogs.forEach((blog, index) => {
+        const blogCard = document.createElement('div');
+        blogCard.className = 'blog-card';
+        blogCard.innerHTML = `
+            <img src="${blog.image}" alt="${blog.title}" class="blog-image">
+            <div class="blog-content">
+                <h3>${blog.title}</h3>
+                <p>${blog.excerpt}</p>
+                <div class="blog-date">${blog.date}</div>
+            </div>
+        `;
+        blogCard.addEventListener('click', () => openBlogModal(index));
+        blogGrid.appendChild(blogCard);
+    });
 }
 
-/* Enhanced Responsive Design */
-@media (max-width: 1024px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
+// Open blog modal
+function openBlogModal(index) {
+    const modal = document.getElementById('blog-modal');
+    const blog = blogs[index];
     
-    .hero p {
-        font-size: 1.3rem;
-    }
+    document.getElementById('modal-title').textContent = blog.title;
+    document.getElementById('modal-date').textContent = blog.date;
+    document.getElementById('modal-image').src = blog.image;
+    document.getElementById('modal-image').alt = blog.title;
+    document.getElementById('modal-content-text').innerHTML = blog.content;
+    document.getElementById('modal-bottom-image').src = blog.image;
+    document.getElementById('modal-bottom-image').alt = blog.title;
     
-    .blog-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+// Close blog modal
+function closeBlogModal() {
+    const modal = document.getElementById('blog-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+    const navMenu = document.getElementById('nav-menu');
+    const hamburger = document.getElementById('hamburger');
     
-    .team-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+// Smooth scrolling for navigation links
+function smoothScroll(target) {
+    const element = document.querySelector(target);
+    if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
     }
 }
 
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.98);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-item {
-        margin: 1rem 0;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-        line-height: 1.2;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-
-    .section {
-        padding: 3rem 0;
-    }
-
-    .blog-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .team-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .achievements-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .modal-content {
-        width: 95%;
-        margin: 2% auto;
-        max-height: 90vh;
-    }
-
-    .modal-image {
-        height: 250px;
-    }
-
-    .modal-body {
-        padding: 2rem;
-    }
-
-    .modal h2 {
-        font-size: 2rem;
+// Navbar scroll effect
+function handleNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
     }
 }
 
-@media (max-width: 480px) {
-    .nav-container {
-        padding: 0 1rem;
-    }
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate blog cards
+    generateBlogCards();
+    
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', toggleMobileMenu);
+    
+    // Close modal events
+    document.querySelector('.close').addEventListener('click', closeBlogModal);
+    document.getElementById('blog-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeBlogModal();
+        }
+    });
+    
+    // Escape key to close modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeBlogModal();
+        }
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            smoothScroll(target);
+            
+            // Close mobile menu if open
+            document.getElementById('nav-menu').classList.remove('active');
+        });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', handleNavbarScroll);
+    
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    document.querySelectorAll('.blog-card, .team-member, .achievement-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
 
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .section {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-        line-height: 1.1;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .achievements-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .achievement-item {
-        padding: 1.5rem 1rem;
-    }
-
-    .achievement-number {
-        font-size: 2.5rem;
-    }
-
-    .modal-image {
-        height: 200px;
-    }
-
-    .modal-body {
-        padding: 1.5rem;
-    }
-
-    .modal h2 {
-        font-size: 1.5rem;
-    }
-
-    .modal-content-text {
-        font-size: 1rem;
-    }
+// Counter animation for achievements
+function animateCounters() {
+    const counters = document.querySelectorAll('.achievement-number');
+    counters.forEach(counter => {
+        const target = parseInt(counter.textContent.replace('+', ''));
+        const increment = target / 50;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                counter.textContent = counter.textContent.includes('+') ? target + '+' : target;
+                clearInterval(timer);
+            } else {
+                counter.textContent = Math.floor(current);
+            }
+        }, 30);
+    });
 }
-#blogs {
-    padding: 40px 20px;
-    background-color: #111;
-    color: white;
-    text-align: center;
+
+// Trigger counter animation when achievements section is visible
+const achievementsSection = document.getElementById('achievements');
+const achievementsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            achievementsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+if (achievementsSection) {
+    achievementsObserver.observe(achievementsSection);
+}
+const blogs = [
+    {
+      title: "India vs England Test - Day 1 Recap",
+      content: "India dominated with the bat as Rohit Sharma scored a century and Bumrah picked early wickets...",
+    },
+    {
+      title: "Shubman Gill’s Comeback",
+      content: "After facing criticism, Gill answered with a steady 85-run innings showing maturity and grit...",
+    }
+  ];
+  
+  function loadBlogs() {
+    const blogList = document.getElementById("blog-list");
+    blogs.forEach((blog, index) => {
+      const card = document.createElement("div");
+      card.className = "blog-card";
+      card.innerText = blog.title;
+      card.onclick = () => openModal(blog.title, blog.content);
+      blogList.appendChild(card);
+    });
   }
   
-  .blog-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+  function openModal(title, content) {
+    document.getElementById("modal-title").innerText = title;
+    document.getElementById("modal-content").innerText = content;
+    document.getElementById("blog-modal").style.display = "block";
   }
   
-  .blog-card {
-    background-color: #222;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  function closeModal() {
+    document.getElementById("blog-modal").style.display = "none";
   }
   
-  .blog-card:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Modal Styling */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    padding-top: 60px;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.9);
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    color: #000;
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 60%;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-  
-  .close-button {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-  }
+  window.onload = loadBlogs;
   
